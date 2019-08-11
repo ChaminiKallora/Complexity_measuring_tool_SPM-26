@@ -11,6 +11,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,7 +34,6 @@ import javax.swing.table.JTableHeader;
 public class Calculation extends javax.swing.JFrame {//^public .*
 
     CodeLineCalculations calculation = new CodeLineCalculations();
-    
     /**
      * Creates new form Calculation
      */
@@ -42,14 +45,14 @@ public class Calculation extends javax.swing.JFrame {//^public .*
         showTime();
     }
     
-    public Calculation(String code) {
+    public Calculation(File ff) throws IOException {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
         jTableDesign();
         showTime();
-        //regexChecker(".*[{};]", code); 
-        setTableData(".*[{};]", code);
+        //regexChecker(".*[{};]", code);
+        setTableData(".*[{};]", ff);
         calculation(code);
     }
     
@@ -94,17 +97,33 @@ public class Calculation extends javax.swing.JFrame {//^public .*
     }
     
     //public void regexChecker(String theRegex, String code){
-    public void setTableData(String theRegex, String code){
-        ArrayList<String> list = calculation.breakLines(theRegex, code);
-        calculation.checkExtends();
+    public void setTableData(String theRegex, File ff) throws IOException{
+        ArrayList<String> list = calculation.breakLines(theRegex, ff);
+//        calculation.checkExtends();
+//        
+        FileReader fr = new FileReader(ff);    
+        BufferedReader br=new BufferedReader(fr);    
+  
+        String strCurrentLine;
+
+        while ((strCurrentLine = br.readLine()) != null) {
+            System.out.println(strCurrentLine);
         
-        for (String temp : list) {
-            Object[] row = { 1, temp, };
+            Object[] row = { 1, strCurrentLine };
             
             DefaultTableModel model = (DefaultTableModel) table_uploaded.getModel();
 
             model.addRow(row);
-        }         
+        
+        }  
+
+//        for (String temp : list) {
+//            Object[] row = { 1, temp, };
+//            
+//            DefaultTableModel model = (DefaultTableModel) table_uploaded.getModel();
+//
+//            model.addRow(row);
+//        }         
     }
 
     private void calculation(String regex){

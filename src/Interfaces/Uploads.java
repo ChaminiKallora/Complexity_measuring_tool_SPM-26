@@ -420,7 +420,12 @@ public class Uploads extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Calculation calculation = new Calculation(code);
+        Calculation calculation = null;
+        try {
+            calculation = new Calculation(ff);
+        } catch (IOException ex) {
+            Logger.getLogger(Uploads.class.getName()).log(Level.SEVERE, null, ex);
+        }
         calculation.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
