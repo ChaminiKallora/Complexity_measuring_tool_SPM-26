@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import Controllers.CodeLineCalculations;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -12,18 +13,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 /**
  *
  * @author chami
  */
-public class Calculation extends javax.swing.JFrame {
+public class Calculation extends javax.swing.JFrame {//^public .*
 
+    CodeLineCalculations calculation = new CodeLineCalculations();
+    
     /**
      * Creates new form Calculation
      */
@@ -33,6 +40,17 @@ public class Calculation extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         jTableDesign();
         showTime();
+    }
+    
+    public Calculation(String code) {
+        initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
+        jTableDesign();
+        showTime();
+        //regexChecker(".*[{};]", code); 
+        setTableData(".*[{};]", code);
+        calculation(code);
     }
     
      private void jTableDesign(){
@@ -74,8 +92,26 @@ public class Calculation extends javax.swing.JFrame {
         jTextField6.setEditable(false);
 
     }
- 
+    
+    //public void regexChecker(String theRegex, String code){
+    public void setTableData(String theRegex, String code){
+        ArrayList<String> list = calculation.breakLines(theRegex, code);
+        calculation.checkExtends();
+        
+        for (String temp : list) {
+            Object[] row = { 1, temp, };
+            
+            DefaultTableModel model = (DefaultTableModel) table_uploaded.getModel();
 
+            model.addRow(row);
+        }         
+    }
+
+    private void calculation(String regex){
+        //regexChecker("\\w*\\sextends\\s\\w*", code);
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -138,11 +174,7 @@ public class Calculation extends javax.swing.JFrame {
         table_uploaded.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         table_uploaded.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "wqw", null, null, null, null, null, null, null, null},
-                {"2", "wq", null, null, null, null, null, null, null, null},
-                {"3", "q", null, null, null, null, null, null, null, null},
-                {"4", null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "", "Program statements", "Tokens identified under the size factor ", "Cs", "Ctc", "Cnc ", "Ci ", "TW ", "Cps ", "Cr "
@@ -182,7 +214,7 @@ public class Calculation extends javax.swing.JFrame {
         }
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(30, 130, 1310, 400);
+        jScrollPane2.setBounds(30, 130, 1310, 560);
 
         jLabel8.setBackground(new java.awt.Color(0, 51, 51));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N

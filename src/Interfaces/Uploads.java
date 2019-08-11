@@ -390,9 +390,10 @@ public class Uploads extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     File ff;
     FileReader fr;
+    String code;
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         JFileChooser jf = new JFileChooser();
+        JFileChooser jf = new JFileChooser();
         int aa = jf.showOpenDialog(null);
         System.out.println(aa);
         
@@ -405,6 +406,7 @@ public class Uploads extends javax.swing.JFrame {
             try {
                 fr = new FileReader(ff);
                 fileUploded_textArea.read(fr, "");
+                code = fileUploded_textArea.getText();
             } catch (Exception ex) {
                 Logger.getLogger(Uploads.class.getName()).log(Level.SEVERE, null, ex);
             }finally{  
@@ -418,7 +420,7 @@ public class Uploads extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Calculation calculation = new Calculation();
+        Calculation calculation = new Calculation(code);
         calculation.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
