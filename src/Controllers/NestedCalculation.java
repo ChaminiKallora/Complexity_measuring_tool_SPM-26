@@ -11,4 +11,6 @@ package Controllers;
  */
 public class NestedCalculation {
     
+    String code;
+    
 }
