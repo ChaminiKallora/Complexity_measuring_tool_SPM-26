@@ -33,7 +33,7 @@ import javax.swing.table.JTableHeader;
  */
 public class Calculation extends javax.swing.JFrame {//^public .*
 
-    CodeLineCalculations calculation = new CodeLineCalculations();
+   
     /**
      * Creates new form Calculation
      */
@@ -52,8 +52,7 @@ public class Calculation extends javax.swing.JFrame {//^public .*
         jTableDesign();
         showTime();
         //regexChecker(".*[{};]", code);
-        setTableData(".*[{};]", ff);
-        calculation(code);
+        setTableData(ff);
     }
     
      private void jTableDesign(){
@@ -97,17 +96,16 @@ public class Calculation extends javax.swing.JFrame {//^public .*
     }
     
     //public void regexChecker(String theRegex, String code){
-    public void setTableData(String theRegex, File ff) throws IOException{
-        ArrayList<String> list = calculation.breakLines(theRegex, ff);
-//        calculation.checkExtends();
-//        
+    public void setTableData(File ff) throws IOException{  
         FileReader fr = new FileReader(ff);    
-        BufferedReader br=new BufferedReader(fr);    
-  
+        BufferedReader br=new BufferedReader(fr);
+        
+        CodeLineCalculations cal = new CodeLineCalculations(ff);
+        //cal.checkExtends();
+        
         String strCurrentLine;
 
         while ((strCurrentLine = br.readLine()) != null) {
-            System.out.println(strCurrentLine);
         
             Object[] row = { 1, strCurrentLine };
             
@@ -115,15 +113,7 @@ public class Calculation extends javax.swing.JFrame {//^public .*
 
             model.addRow(row);
         
-        }  
-
-//        for (String temp : list) {
-//            Object[] row = { 1, temp, };
-//            
-//            DefaultTableModel model = (DefaultTableModel) table_uploaded.getModel();
-//
-//            model.addRow(row);
-//        }         
+        }         
     }
 
     private void calculation(String regex){

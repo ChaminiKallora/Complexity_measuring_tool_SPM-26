@@ -395,13 +395,11 @@ public class Uploads extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFileChooser jf = new JFileChooser();
         int aa = jf.showOpenDialog(null);
-        System.out.println(aa);
         
         if(aa == JFileChooser.APPROVE_OPTION){
             char cbuf[] = null;
             ff = jf.getSelectedFile();
             fileUpload_name.setText(ff.getName());
-            System.out.println(ff);
             
             try {
                 fr = new FileReader(ff);
