@@ -246,10 +246,17 @@ public class Uploads extends javax.swing.JFrame {
         table_uploaded.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         table_uploaded.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"wq", "wqw"},
-                {"wq", "wq"},
-                {"wq", "q"},
-                {"wq", null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
                 "File uploaded", "Date"
@@ -395,13 +402,11 @@ public class Uploads extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFileChooser jf = new JFileChooser();
         int aa = jf.showOpenDialog(null);
-        System.out.println(aa);
         
         if(aa == JFileChooser.APPROVE_OPTION){
             char cbuf[] = null;
             ff = jf.getSelectedFile();
             fileUpload_name.setText(ff.getName());
-            System.out.println(ff);
             
             try {
                 fr = new FileReader(ff);
@@ -420,7 +425,12 @@ public class Uploads extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Calculation calculation = new Calculation(code);
+        TableCalculationView calculation = null;
+        try {
+            calculation = new TableCalculationView(ff);
+        } catch (IOException ex) {
+            Logger.getLogger(Uploads.class.getName()).log(Level.SEVERE, null, ex);
+        }
         calculation.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
