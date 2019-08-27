@@ -246,6 +246,7 @@ public class Uploads extends javax.swing.JFrame {
         table_uploaded.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         table_uploaded.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+<<<<<<< HEAD
                 {null, null},
                 {null, null},
                 {null, null},
@@ -257,6 +258,12 @@ public class Uploads extends javax.swing.JFrame {
                 {null, null},
                 {null, null},
                 {null, null}
+=======
+                {"wq", "wqw"},
+                {"wq", "wq"},
+                {"wq", "q"},
+                {"wq", null}
+>>>>>>> c0153b1a52b20c34bdac51195f244aae9018c699
             },
             new String [] {
                 "File uploaded", "Date"
@@ -425,9 +432,15 @@ public class Uploads extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+<<<<<<< HEAD
         TableCalculationView calculation = null;
         try {
             calculation = new TableCalculationView(ff);
+=======
+        Calculation calculation = null;
+        try {
+            calculation = new Calculation(ff);
+>>>>>>> c0153b1a52b20c34bdac51195f244aae9018c699
         } catch (IOException ex) {
             Logger.getLogger(Uploads.class.getName()).log(Level.SEVERE, null, ex);
         }
