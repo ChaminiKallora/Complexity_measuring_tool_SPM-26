@@ -5,6 +5,8 @@
  */
 package measuringtool;
 
+import Interfaces.Uploads;
+
 /**
  *
  * @author chami
@@ -15,7 +17,8 @@ public class MeasuringTool {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Uploads up = new Uploads();
+        
     }
     
 }

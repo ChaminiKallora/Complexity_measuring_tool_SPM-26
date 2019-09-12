@@ -39,21 +39,8 @@ public class Uploads extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
-        jTableDesign();
         showTime();  
         
-    }
-    
-    private void jTableDesign(){
-        table_uploaded.setRowHeight(40);
-        table_uploaded.setShowGrid(true);
-        table_uploaded.setGridColor(new Color(153,153,255));
-        table_uploaded.setSelectionBackground(Color.DARK_GRAY);
-        
-        JTableHeader tableHeader = table_uploaded.getTableHeader();
-        tableHeader.setBackground(new Color(153,153,255));
-        tableHeader.setForeground(Color.BLACK);
-        tableHeader.setFont(new Font("Arial", Font.BOLD, 18));
     }
     
     private void showTime() {
@@ -92,30 +79,23 @@ public class Uploads extends javax.swing.JFrame {
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
-        uploadFiles = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        fileUpload_name = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        fileUploded_textArea = new javax.swing.JTextArea();
-        backGround = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        table_uploaded = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        fileUploded_textArea = new javax.swing.JTextArea();
+        fileUpload_name = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        uploadFiles = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -124,8 +104,66 @@ public class Uploads extends javax.swing.JFrame {
         bg.setBackground(new java.awt.Color(255, 255, 255));
         bg.setLayout(null);
 
-        uploadFiles.setBackground(new java.awt.Color(153, 153, 255));
-        uploadFiles.setLayout(null);
+        jTextField3.setBackground(new java.awt.Color(0, 0, 102));
+        jTextField3.setFont(new java.awt.Font("Microsoft Tai Le", 1, 15)); // NOI18N
+        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField3.setBorder(null);
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+        bg.add(jTextField3);
+        jTextField3.setBounds(1190, 90, 150, 40);
+
+        jTextField4.setBackground(new java.awt.Color(0, 0, 102));
+        jTextField4.setFont(new java.awt.Font("Microsoft Tai Le", 1, 15)); // NOI18N
+        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField4.setText("Date");
+        jTextField4.setBorder(null);
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+        bg.add(jTextField4);
+        jTextField4.setBounds(1130, 90, 70, 40);
+
+        jTextField6.setBackground(new java.awt.Color(0, 0, 102));
+        jTextField6.setFont(new java.awt.Font("Microsoft Tai Le", 1, 15)); // NOI18N
+        jTextField6.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField6.setBorder(null);
+        bg.add(jTextField6);
+        jTextField6.setBounds(1190, 190, 150, 40);
+
+        jTextField5.setBackground(new java.awt.Color(0, 0, 102));
+        jTextField5.setFont(new java.awt.Font("Microsoft Tai Le", 1, 15)); // NOI18N
+        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField5.setText("Time");
+        jTextField5.setBorder(null);
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+        bg.add(jTextField5);
+        jTextField5.setBounds(1130, 190, 80, 40);
+
+        fileUploded_textArea.setColumns(20);
+        fileUploded_textArea.setRows(5);
+        jScrollPane1.setViewportView(fileUploded_textArea);
+
+        bg.add(jScrollPane1);
+        jScrollPane1.setBounds(70, 200, 930, 470);
+
+        fileUpload_name.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        fileUpload_name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileUpload_nameActionPerformed(evt);
+            }
+        });
+        bg.add(fileUpload_name);
+        fileUpload_name.setBounds(200, 140, 800, 26);
 
         jButton1.setBackground(new java.awt.Color(0, 0, 102));
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -142,8 +180,8 @@ public class Uploads extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        uploadFiles.add(jButton1);
-        jButton1.setBounds(70, 240, 120, 30);
+        bg.add(jButton1);
+        jButton1.setBounds(70, 140, 120, 30);
 
         jButton2.setBackground(new java.awt.Color(0, 0, 102));
         jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -155,74 +193,8 @@ public class Uploads extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        uploadFiles.add(jButton2);
-        jButton2.setBounds(230, 700, 240, 40);
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("User Name");
-        uploadFiles.add(jLabel1);
-        jLabel1.setBounds(70, 80, 115, 26);
-
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        uploadFiles.add(jTextField1);
-        jTextField1.setBounds(200, 80, 259, 26);
-
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel2.setText("Type");
-        uploadFiles.add(jLabel2);
-        jLabel2.setBounds(70, 160, 115, 26);
-
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        uploadFiles.add(jTextField2);
-        jTextField2.setBounds(200, 160, 259, 26);
-
-        fileUpload_name.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        fileUpload_name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fileUpload_nameActionPerformed(evt);
-            }
-        });
-        uploadFiles.add(fileUpload_name);
-        fileUpload_name.setBounds(200, 240, 259, 26);
-
-        jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 3, 24)); // NOI18N
-        jLabel5.setText("Upload files");
-        uploadFiles.add(jLabel5);
-        jLabel5.setBounds(170, 20, 210, 40);
-
-        fileUploded_textArea.setColumns(20);
-        fileUploded_textArea.setRows(5);
-        jScrollPane1.setViewportView(fileUploded_textArea);
-
-        uploadFiles.add(jScrollPane1);
-        jScrollPane1.setBounds(70, 300, 400, 370);
-
-        backGround.setBackground(new java.awt.Color(153, 153, 255));
-        backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backGround2.png"))); // NOI18N
-        uploadFiles.add(backGround);
-        backGround.setBounds(0, 250, 680, 540);
-
-        bg.add(uploadFiles);
-        uploadFiles.setBounds(0, 0, 530, 820);
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backGround2.png"))); // NOI18N
-        bg.add(jLabel4);
-        jLabel4.setBounds(500, 270, 1390, 520);
-
-        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 3, 24)); // NOI18N
-        jLabel3.setText("Uploaded files");
-        bg.add(jLabel3);
-        jLabel3.setBounds(750, 90, 210, 40);
+        bg.add(jButton2);
+        jButton2.setBounds(410, 690, 240, 40);
 
         jLabel8.setBackground(new java.awt.Color(0, 51, 51));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -235,116 +207,47 @@ public class Uploads extends javax.swing.JFrame {
         });
         bg.add(jLabel8);
         jLabel8.setBounds(1320, 14, 30, 30);
-
-        jLabel9.setBackground(new java.awt.Color(0, 0, 51));
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/signout_1.png"))); // NOI18N
-        bg.add(jLabel9);
-        jLabel9.setBounds(1280, 10, 30, 40);
-
-        table_uploaded.setAutoCreateRowSorter(true);
-        table_uploaded.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255)));
-        table_uploaded.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        table_uploaded.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"wq", "wqw"},
-                {"wq", "wq"},
-                {"wq", "q"},
-                {"wq", null}
-            },
-            new String [] {
-                "File uploaded", "Date"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        table_uploaded.setGridColor(new java.awt.Color(204, 204, 255));
-        table_uploaded.setIntercellSpacing(new java.awt.Dimension(5, 2));
-        table_uploaded.setSelectionForeground(new java.awt.Color(204, 204, 255));
-        table_uploaded.getTableHeader().setResizingAllowed(false);
-        table_uploaded.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                table_uploadedMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                table_uploadedMouseEntered(evt);
-            }
-        });
-        jScrollPane2.setViewportView(table_uploaded);
-
-        bg.add(jScrollPane2);
-        jScrollPane2.setBounds(580, 140, 700, 400);
         bg.add(jLabel6);
         jLabel6.setBounds(570, 10, 510, 0);
 
-        jTextField3.setBackground(new java.awt.Color(0, 0, 102));
-        jTextField3.setFont(new java.awt.Font("Microsoft Tai Le", 1, 15)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField3.setBorder(null);
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        bg.add(jTextField3);
-        jTextField3.setBounds(780, 10, 190, 40);
+        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 3, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Upload files");
+        bg.add(jLabel5);
+        jLabel5.setBounds(420, 50, 210, 40);
 
-        jTextField4.setBackground(new java.awt.Color(0, 0, 102));
-        jTextField4.setFont(new java.awt.Font("Microsoft Tai Le", 1, 15)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField4.setText("Date");
-        jTextField4.setBorder(null);
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        bg.add(jTextField4);
-        jTextField4.setBounds(740, 10, 70, 40);
+        jLabel2.setBackground(new java.awt.Color(0, 0, 102));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/blue.jpg"))); // NOI18N
+        bg.add(jLabel2);
+        jLabel2.setBounds(420, 50, 210, 50);
 
-        jTextField6.setBackground(new java.awt.Color(0, 0, 102));
-        jTextField6.setFont(new java.awt.Font("Microsoft Tai Le", 1, 15)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField6.setBorder(null);
-        bg.add(jTextField6);
-        jTextField6.setBounds(1040, 10, 180, 40);
+        jLabel4.setBackground(new java.awt.Color(153, 153, 255));
+        jLabel4.setForeground(new java.awt.Color(153, 153, 255));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/blue.jpg"))); // NOI18N
+        bg.add(jLabel4);
+        jLabel4.setBounds(1104, 0, 400, 790);
 
-        jTextField5.setBackground(new java.awt.Color(0, 0, 102));
-        jTextField5.setFont(new java.awt.Font("Microsoft Tai Le", 1, 15)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField5.setText("Time");
-        jTextField5.setBorder(null);
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-        bg.add(jTextField5);
-        jTextField5.setBounds(990, 10, 80, 40);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/comp3.png"))); // NOI18N
+        bg.add(jLabel1);
+        jLabel1.setBounds(0, 0, 1490, 800);
 
         jLabel7.setBackground(new java.awt.Color(153, 153, 255));
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/barT.png"))); // NOI18N
         bg.add(jLabel7);
         jLabel7.setBounds(0, 0, 1490, 60);
 
+        uploadFiles.setBackground(new java.awt.Color(153, 153, 255));
+        uploadFiles.setLayout(null);
+        bg.add(uploadFiles);
+        uploadFiles.setBounds(0, 0, 710, 820);
+
         getContentPane().add(bg);
         bg.setBounds(-2, -2, 1890, 820);
 
         setBounds(0, 0, 1887, 790);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void setColour(JTable jp){
         jp.setBackground(new Color(204,204,255));
@@ -370,15 +273,6 @@ public class Uploads extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
 
-    private void table_uploadedMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_uploadedMouseEntered
-       
-    }//GEN-LAST:event_table_uploadedMouseEntered
-
-    private void table_uploadedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_uploadedMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_table_uploadedMouseClicked
-
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel8MouseClicked
@@ -395,13 +289,11 @@ public class Uploads extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFileChooser jf = new JFileChooser();
         int aa = jf.showOpenDialog(null);
-        System.out.println(aa);
         
         if(aa == JFileChooser.APPROVE_OPTION){
             char cbuf[] = null;
             ff = jf.getSelectedFile();
             fileUpload_name.setText(ff.getName());
-            System.out.println(ff);
             
             try {
                 fr = new FileReader(ff);
@@ -420,7 +312,12 @@ public class Uploads extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Calculation calculation = new Calculation(code);
+        TableCalculationView calculation = null;
+        try {
+            calculation = new TableCalculationView(ff);
+        } catch (IOException ex) {
+            Logger.getLogger(Uploads.class.getName()).log(Level.SEVERE, null, ex);
+        }
         calculation.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -461,7 +358,6 @@ public class Uploads extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel backGround;
     private javax.swing.JPanel bg;
     private javax.swing.JTextField fileUpload_name;
     private javax.swing.JTextArea fileUploded_textArea;
@@ -469,22 +365,16 @@ public class Uploads extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTable table_uploaded;
     private javax.swing.JPanel uploadFiles;
     // End of variables declaration//GEN-END:variables
 }
