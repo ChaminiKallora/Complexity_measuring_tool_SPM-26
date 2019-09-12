@@ -16,10 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
-<<<<<<< HEAD:src/Interfaces/TableCalculationView.java
 import java.io.FileNotFoundException;
-=======
->>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c:src/Interfaces/Calculation.java
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DateFormatSymbols;
@@ -43,14 +40,12 @@ import javax.swing.table.JTableHeader;
  *
  * @author chami
  */
-public class TableCalculationView extends javax.swing.JFrame {//^public .*     
+public class TableCalculationView extends javax.swing.JFrame {//^public .*
 
-<<<<<<< HEAD:src/Interfaces/TableCalculationView.java
     File ff;
 
     private int inheritanceValue = 0;
     private int rowNum = 0;
-    private int colRowNum = 0;
     private int rowNumTable = 1;
 
     //complexity initializers
@@ -58,19 +53,12 @@ public class TableCalculationView extends javax.swing.JFrame {//^public .*
     private int sumSize = 0;
     private int sumNested = 0;
     private int sumControl = 0;
-    
-    //cp
-    private int sumCps = 0;
-    private int colSum = 0;
-    
+
     //regex
     String regex_findClasses = "\\b(class)\\b\\s\\w+";
-    String regex_findcode = "\\n|^\\s*$|(\\{|^([\\W]*\\})|^[\\W]*\\s*\\/\\/|^[\\W]*\\s*\\*\\/|^[\\W]*\\s*\\/\\*|^[\\W]*\\s*\\*|^[\\W]*\\s*try\\s*\\{*|^[\\W]*\\s*\\}*\\s*(else)\\s*\\{*)|^public\\s*\\:|^private\\s*\\:";
+    String regex_findcode = "\\n|^\\s*$|(\\{|^([\\W]*\\})|^[\\W]*\\s*\\/\\/|^[\\W]*\\s*\\*\\/|^[\\W]*\\s*\\/\\*|^[\\W]*\\s*\\*|^[\\W]*\\s*try\\s*\\{*|^[\\W]*\\s*\\}*\\s*(else)\\s*\\{*)";
     String regex_findcode2 = "(^([\\W]*\\}\\s*[\\w]+^(?!else))|\\w+^(?!try)\\{\\s*\\w*|\\w*\\{\\s*\\w+|\\w*\\{\\s*\\W+\\w+|\\w+\\W+\\{\\s*)";
 
-=======
-   
->>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c:src/Interfaces/Calculation.java
     /**
      * Creates new form Calculation
      */
@@ -81,13 +69,8 @@ public class TableCalculationView extends javax.swing.JFrame {//^public .*
         jTableDesign();
         showTime();
     }
-<<<<<<< HEAD:src/Interfaces/TableCalculationView.java
 
     public TableCalculationView(File ff) throws IOException {
-=======
-    
-    public Calculation(File ff) throws IOException {
->>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c:src/Interfaces/Calculation.java
         initComponents();
         this.ff = ff;
 
@@ -95,14 +78,9 @@ public class TableCalculationView extends javax.swing.JFrame {//^public .*
         this.setLocationRelativeTo(null);
         jTableDesign();
         showTime();
-<<<<<<< HEAD:src/Interfaces/TableCalculationView.java
 
         setTableData(ff);
         lineArray();
-=======
-        //regexChecker(".*[{};]", code);
-        setTableData(ff);
->>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c:src/Interfaces/Calculation.java
     }
 
     public int getInheritanceSum() {
@@ -160,7 +138,6 @@ public class TableCalculationView extends javax.swing.JFrame {//^public .*
         jTextField6.setEditable(false);
 
     }
-<<<<<<< HEAD:src/Interfaces/TableCalculationView.java
 
     public int setTableData(File ff) throws IOException {
         DefaultTableModel model = (DefaultTableModel) table_uploaded.getModel();
@@ -180,81 +157,21 @@ public class TableCalculationView extends javax.swing.JFrame {//^public .*
             Object[] row = {rowNumTable++, strCurrentLine, null, null, null, null, null, null, null, null};
 
             model.addRow(row);
-=======
-    
-    //public void regexChecker(String theRegex, String code){
-    public void setTableData(File ff) throws IOException{  
-        FileReader fr = new FileReader(ff);    
-        BufferedReader br=new BufferedReader(fr);
-        
-        CodeLineCalculations cal = new CodeLineCalculations(ff);
-        //cal.checkExtends();
-        
-        String strCurrentLine;
 
-        while ((strCurrentLine = br.readLine()) != null) {
-        
-            Object[] row = { 1, strCurrentLine };
-            
-            DefaultTableModel model = (DefaultTableModel) table_uploaded.getModel();
-
-            model.addRow(row);
-        
-        }         
-    }
->>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c:src/Interfaces/Calculation.java
-
-            //set complexity of inheritance row by row
             inheritanceClaculation(strCurrentLine, cal, set, iterator, model);
-            
-            //should be called after every complexity is calculated row by row
-            colSum(strCurrentLine, cal, set, iterator, model);
         }
 
         for (int i = 0; i < table_uploaded.getRowCount(); i++) {
             try {
                 this.sumInheritance = this.sumInheritance + Integer.parseInt(table_uploaded.getValueAt(i, 6).toString());
             } catch (Exception e) {
+                //System.out.println("Error - " +e);
             }
-                
-//            try {
-//                if(table_uploaded.getValueAt(i, 9).toString() == null || table_uploaded.getValueAt(i, 9).toString().equals('0')){
-//                    this.sumCps = this.sumCps + Integer.parseInt(table_uploaded.getValueAt(i, 8).toString());
-//                    System.out.println(sumCps);
-//                }else{
-//                    this.sumCps = this.sumCps + Integer.parseInt(table_uploaded.getValueAt(i, 9).toString());
-//                    System.out.println(sumCps);
-//                }
-//            } catch (Exception e) {
-//                //System.out.println("Error - " +e);
-//            }
-
-            boolean n = true;
-            try {
-                    this.sumCps = this.sumCps + Integer.parseInt(table_uploaded.getValueAt(i, 8).toString());
-                    System.out.println(sumCps);
-            } catch (Exception e) {
-             
-            }
-            
-            try {
-                if(table_uploaded.getValueAt(i, 9).toString() != null){
-                    this.sumCps = this.sumCps + Integer.parseInt(table_uploaded.getValueAt(i, 9).toString()) - Integer.parseInt(table_uploaded.getValueAt(i, 8).toString());
-                    System.out.println(sumCps);
-                }
-            } catch (Exception e) {
-
-            }
-            
 
         }
 
-        
         Object[] row = {null, "Total", null, null, null, null, sumInheritance, null, null, null};
         model.addRow(row);
-        
-        Object[] row2 = {null, null, "CPs", null, null, null, null, null, null, sumCps};
-        model.addRow(row2);
 
         return this.sumInheritance;
     }
@@ -341,49 +258,6 @@ public class TableCalculationView extends javax.swing.JFrame {//^public .*
             }
         }
         rowNum++;
-
-    }
-    
-    private void colSum(String strCurrentLine, InheritanceComplexity cal, Set set, Iterator iterator, DefaultTableModel model){
-        
-        try{
-            int cs = (int) model.getValueAt(colRowNum, 3);
-            colSum = cs + colSum;
-        }catch (Exception e) {
-                //System.out.println("Error - " +e);
-        }
-        
-        try{
-            int ctc = (int) model.getValueAt(colRowNum, 4);
-            colSum = ctc + colSum;
-        }catch (Exception e) {
-                //System.out.println("Error - " +e);
-        }
-        
-        try{
-             int cnc = (int) model.getValueAt(colRowNum, 5);
-             colSum = cnc + colSum;
-        }catch (Exception e) {
-                //System.out.println("Error - " +e);
-        }
-        
-        try{
-            int ci = (int) model.getValueAt(colRowNum, 6);
-            colSum = ci + colSum;
-        }catch (Exception e) {
-                //System.out.println("Error - " +e);
-        }
-        
-        try{
-            int TW = (int) model.getValueAt(colRowNum, 7);
-            colSum = TW + colSum;
-        }catch (Exception e) {
-                //System.out.println("Error - " +e);
-        }
-
-        model.setValueAt(colSum, colRowNum, 8);
-        colSum = 0;
-        colRowNum++;     
 
     }
 
@@ -483,8 +357,8 @@ public class TableCalculationView extends javax.swing.JFrame {//^public .*
             table_uploaded.getColumnModel().getColumn(1).setMinWidth(500);
             table_uploaded.getColumnModel().getColumn(1).setPreferredWidth(500);
             table_uploaded.getColumnModel().getColumn(1).setMaxWidth(500);
-            table_uploaded.getColumnModel().getColumn(2).setMinWidth(300);
-            table_uploaded.getColumnModel().getColumn(2).setPreferredWidth(300);
+            table_uploaded.getColumnModel().getColumn(2).setMinWidth(500);
+            table_uploaded.getColumnModel().getColumn(2).setPreferredWidth(500);
             table_uploaded.getColumnModel().getColumn(2).setMaxWidth(500);
         }
 

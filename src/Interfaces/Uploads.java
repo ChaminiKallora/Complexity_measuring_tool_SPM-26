@@ -207,6 +207,67 @@ public class Uploads extends javax.swing.JFrame {
         });
         bg.add(jLabel8);
         jLabel8.setBounds(1320, 14, 30, 30);
+<<<<<<< HEAD
+=======
+
+        jLabel9.setBackground(new java.awt.Color(0, 0, 51));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/signout_1.png"))); // NOI18N
+        bg.add(jLabel9);
+        jLabel9.setBounds(1280, 10, 30, 40);
+
+        table_uploaded.setAutoCreateRowSorter(true);
+        table_uploaded.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255)));
+        table_uploaded.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        table_uploaded.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+<<<<<<< HEAD
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+=======
+                {"wq", "wqw"},
+                {"wq", "wq"},
+                {"wq", "q"},
+                {"wq", null}
+>>>>>>> c0153b1a52b20c34bdac51195f244aae9018c699
+            },
+            new String [] {
+                "File uploaded", "Date"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        table_uploaded.setGridColor(new java.awt.Color(204, 204, 255));
+        table_uploaded.setIntercellSpacing(new java.awt.Dimension(5, 2));
+        table_uploaded.setSelectionForeground(new java.awt.Color(204, 204, 255));
+        table_uploaded.getTableHeader().setResizingAllowed(false);
+        table_uploaded.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_uploadedMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                table_uploadedMouseEntered(evt);
+            }
+        });
+        jScrollPane2.setViewportView(table_uploaded);
+
+        bg.add(jScrollPane2);
+        jScrollPane2.setBounds(580, 140, 700, 400);
+>>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c
         bg.add(jLabel6);
         jLabel6.setBounds(570, 10, 510, 0);
 
@@ -312,9 +373,21 @@ public class Uploads extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+<<<<<<< HEAD
         TableCalculationView calculation = null;
         try {
             calculation = new TableCalculationView(ff);
+=======
+<<<<<<< HEAD
+        TableCalculationView calculation = null;
+        try {
+            calculation = new TableCalculationView(ff);
+=======
+        Calculation calculation = null;
+        try {
+            calculation = new Calculation(ff);
+>>>>>>> c0153b1a52b20c34bdac51195f244aae9018c699
+>>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c
         } catch (IOException ex) {
             Logger.getLogger(Uploads.class.getName()).log(Level.SEVERE, null, ex);
         }

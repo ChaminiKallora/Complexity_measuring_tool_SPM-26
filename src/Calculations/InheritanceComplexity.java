@@ -5,7 +5,10 @@
  */
 package Calculations;
 
+<<<<<<< HEAD
 import Interfaces.Uploads;
+=======
+>>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,10 +19,15 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+<<<<<<< HEAD
 import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+=======
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+>>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,6 +41,7 @@ public class InheritanceComplexity {
     FileReader fr;
     String code;
     File ff;
+<<<<<<< HEAD
     String file;
     String sCode[];
     String s[];
@@ -44,6 +53,12 @@ public class InheritanceComplexity {
     Map<String, String> classExtended = new HashMap<String, String>();
     Map<String, Integer> classes = new HashMap<String, Integer>();
     Map<String, ArrayList> cpClassesMap = new HashMap<String, ArrayList>();
+=======
+    String sCode[];
+
+    Map<String, String> classExtended = new HashMap<String, String>();
+    Map<String, Integer> classes = new HashMap<String, Integer>();
+>>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c
 
     public InheritanceComplexity(File ff) throws FileNotFoundException, IOException {
         this.ff = ff;
@@ -51,6 +66,7 @@ public class InheritanceComplexity {
         br = new BufferedReader(fr);
 
         convertFiletoString();
+<<<<<<< HEAD
         identifyFileExtension();
     }
 
@@ -87,6 +103,11 @@ public class InheritanceComplexity {
                     break;
             }
         }
+=======
+        findClasses();
+        checkExtends();
+        calculateComplexityInheritance();
+>>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c
     }
 
     //break the code by regex to get class names and extended classes
@@ -96,7 +117,11 @@ public class InheritanceComplexity {
 
         //get extended classes and insert in to classExtended hash map
         if ("class\\s+\\w+\\s+extends\\s+\\w+".equals(theRegex)) {
+<<<<<<< HEAD
 
+=======
+            String s[];
+>>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c
             while (regexMatcher.find()) {
                 if (regexMatcher.group().length() != 0) {
                     s = regexMatcher.group().trim().split(" ");
@@ -110,6 +135,7 @@ public class InheritanceComplexity {
             }
 
             //insert class names and default value to the classes hash map    
+<<<<<<< HEAD
         } else if ("\\b(class)\\b\\s\\w+(\\s+(extends)\\s+\\w.+\\s*|\\s*(public)\\s+\\w.+\\s*|\\s*)".equals(theRegex)) {
 
             while (regexMatcher.find()) {
@@ -153,6 +179,20 @@ public class InheritanceComplexity {
             while (regexMatcher.find()) {
                 if (regexMatcher.group().length() != 0) {
                      System.out.println(regexMatcher.group().trim());
+=======
+        } else if ("\\b(class)\\b\\s\\w+(\\s*|\\s+(extends)\\s+\\w.+\\s*)".equals(theRegex)) {
+            String s[];
+            while (regexMatcher.find()) {
+                if (regexMatcher.group().length() != 0) {
+                    s = regexMatcher.group().trim().split(" ");
+                    classes.put(s[1], 2);
+                }
+            }
+        } else {
+            while (regexMatcher.find()) {
+                if (regexMatcher.group().length() != 0) {
+                    // System.out.println(regexMatcher.group().trim());
+>>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c
                 }
             }
         }
@@ -163,8 +203,15 @@ public class InheritanceComplexity {
         Matcher regexMatcher = checkRegex.matcher(line);
 
         while (regexMatcher.find()) {
+<<<<<<< HEAD
             if (regexMatcher.group().length() != 0) 
                 return true;
+=======
+            if (regexMatcher.group().length() != 0) {
+                //System.out.println(regexMatcher.group().trim());
+                return true;
+            }
+>>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c
         }
         return false;
     }
@@ -184,7 +231,11 @@ public class InheritanceComplexity {
         return "false";
     }
 
+<<<<<<< HEAD
     private void calculateComplexityInheritanceJava() {
+=======
+    private void calculateComplexityInheritance() {
+>>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c
         boolean loop;
 
         for (Map.Entry c : classes.entrySet()) {
@@ -253,6 +304,7 @@ public class InheritanceComplexity {
         }
     }
 
+<<<<<<< HEAD
     private void calculateComplexityInheritanceCpp() {
        boolean loop;
 
@@ -351,6 +403,8 @@ public class InheritanceComplexity {
 //        }
     }
 
+=======
+>>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c
     //pass extend classes regex code
     public void checkExtends() throws IOException {
         codeBreak("class\\s+\\w+\\s+extends\\s+\\w+", null);
@@ -358,11 +412,15 @@ public class InheritanceComplexity {
 
     //pass classes regex code to break
     private void findClasses() {
+<<<<<<< HEAD
         codeBreak("\\b(class)\\b\\s\\w+(\\s+(extends)\\s+\\w.+\\s*|\\s*(public)\\s+\\w.+\\s*|\\s*)", null);
     }
 
     private void checkCplusPlusInheritance() {
         codeBreak("class\\s+\\w+\\s+:(\\s*public\\s+\\w+,|\\s*public\\s+\\w+)*", null);
+=======
+        codeBreak("\\b(class)\\b\\s\\w+(\\s*|\\s+(extends)\\s+\\w.+\\s*)", null);
+>>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c
     }
 
     //convert file to string
