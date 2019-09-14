@@ -154,8 +154,78 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="fileUploded_textArea">
               <Properties>
+<<<<<<< HEAD
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
+=======
+<<<<<<< HEAD
+                <Property name="columns" type="int" value="20"/>
+                <Property name="rows" type="int" value="5"/>
+=======
+                <Property name="autoCreateRowSorter" type="boolean" value="true"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                    <BevelBorder>
+                      <Color PropertyName="highlightOuter" blue="ff" green="ff" red="ff" type="rgb"/>
+                      <Color PropertyName="highlightInner" blue="ff" green="ff" red="ff" type="rgb"/>
+                      <Color PropertyName="shadowOuter" blue="ff" green="ff" red="ff" type="rgb"/>
+                      <Color PropertyName="shadowInner" blue="ff" green="ff" red="ff" type="rgb"/>
+                    </BevelBorder>
+                  </Border>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="14" style="0"/>
+                </Property>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+<<<<<<< HEAD
+                  <Table columnCount="2" rowCount="11">
+                    <Column editable="true" title="File uploaded" type="java.lang.String"/>
+                    <Column editable="true" title="Date" type="java.lang.String"/>
+=======
+                  <Table columnCount="2" rowCount="4">
+                    <Column editable="true" title="File uploaded" type="java.lang.String">
+                      <Data value="wq"/>
+                      <Data value="wq"/>
+                      <Data value="wq"/>
+                      <Data value="wq"/>
+                    </Column>
+                    <Column editable="true" title="Date" type="java.lang.String">
+                      <Data value="wqw"/>
+                      <Data value="wq"/>
+                      <Data value="q"/>
+                      <Data value="null"/>
+                    </Column>
+>>>>>>> c0153b1a52b20c34bdac51195f244aae9018c699
+                  </Table>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
+                </Property>
+                <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="cc" red="cc" type="rgb"/>
+                </Property>
+                <Property name="intercellSpacing" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[5, 2]"/>
+                </Property>
+                <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="cc" red="cc" type="rgb"/>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="false"/>
+                </Property>
+>>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c
+>>>>>>> c62ac061b5bb030b3a1f0a225ae8cadbbb04dee3
               </Properties>
             </Component>
           </SubComponents>
@@ -258,6 +328,16 @@
             </Constraint>
           </Constraints>
         </Component>
+<<<<<<< HEAD
+=======
+        <Component class="javax.swing.JLabel" name="jLabel6">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="570" y="10" width="510" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+>>>>>>> c62ac061b5bb030b3a1f0a225ae8cadbbb04dee3
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -290,6 +370,8 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="420" y="50" width="210" height="50"/>
+<<<<<<< HEAD
+=======
             </Constraint>
           </Constraints>
         </Component>
@@ -320,9 +402,43 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="0" y="0" width="1490" height="800"/>
+>>>>>>> c62ac061b5bb030b3a1f0a225ae8cadbbb04dee3
             </Constraint>
           </Constraints>
         </Component>
+        <Component class="javax.swing.JLabel" name="jLabel4">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="99" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="99" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Images/blue.jpg"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="1104" y="0" width="400" height="790"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+<<<<<<< HEAD
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Images/comp3.png"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="0" y="0" width="1490" height="800"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+=======
+>>>>>>> c62ac061b5bb030b3a1f0a225ae8cadbbb04dee3
         <Container class="javax.swing.JPanel" name="uploadFiles">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

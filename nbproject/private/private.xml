@@ -3,9 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/E:/3yr%202nd/MeasuringTool/src/Interfaces/TableCalculationView.java</file>
             <file>file:/E:/3yr%202nd/MeasuringTool/src/Interfaces/Uploads.java</file>
             <file>file:/E:/3yr%202nd/MeasuringTool/src/Calculations/InheritanceComplexity.java</file>
+=======
+<<<<<<< HEAD
+            <file>file:/E:/3yr%202nd/MeasuringTool/src/Interfaces/TableCalculationView.java</file>
+            <file>file:/E:/3yr%202nd/MeasuringTool/src/Interfaces/Uploads.java</file>
+            <file>file:/E:/3yr%202nd/MeasuringTool/src/Calculations/InheritanceComplexity.java</file>
+            <file>file:/E:/3yr%202nd/MeasuringTool/src/Calculations/Cpulsplus.java</file>
+=======
+<<<<<<< HEAD
+            <file>file:/E:/3yr%202nd/MeasuringTool/src/Interfaces/TableCalculationView.java</file>
+            <file>file:/E:/3yr%202nd/MeasuringTool/src/Calculations/ControlStructureComplexity.java</file>
+            <file>file:/E:/3yr%202nd/MeasuringTool/src/Calculations/InheritanceComplexity.java</file>
+            <file>file:/E:/3yr%202nd/MeasuringTool/src/Calculations/SizeComplexity.java</file>
+            <file>file:/E:/3yr%202nd/MeasuringTool/src/Calculations/NestedComplexity.java</file>
+=======
+            <file>file:/E:/3yr%202nd/SE3080%20-%20Software%20Project%20Management/MeasuringTool/MeasuringTool/src/Interfaces/Uploads.java</file>
+>>>>>>> c0153b1a52b20c34bdac51195f244aae9018c699
+>>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c
+>>>>>>> c62ac061b5bb030b3a1f0a225ae8cadbbb04dee3
         </group>
     </open-files>
 </project-private>
