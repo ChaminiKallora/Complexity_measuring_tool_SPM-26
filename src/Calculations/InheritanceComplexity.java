@@ -152,7 +152,7 @@ public class InheritanceComplexity {
         } else {
             while (regexMatcher.find()) {
                 if (regexMatcher.group().length() != 0) {
-                     System.out.println(regexMatcher.group().trim());
+                     //System.out.println(regexMatcher.group().trim());
                 }
             }
         }
@@ -271,7 +271,7 @@ public class InheritanceComplexity {
                 
                     if (c.getKey().equals(c2.getKey())) {  //check whether the class is inside the extended classes
                         
-                        int count = (int) c.getValue() + cpClasses.size();
+                        int count = (int) c.getValue() + 1;
                         c.setValue(count);
 
                         String className = cpClasses.get(j);
