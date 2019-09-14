@@ -16,14 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
-<<<<<<< HEAD
 import java.io.FileNotFoundException;
-=======
-<<<<<<< HEAD:src/Interfaces/TableCalculationView.java
-import java.io.FileNotFoundException;
-=======
->>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c:src/Interfaces/Calculation.java
->>>>>>> c62ac061b5bb030b3a1f0a225ae8cadbbb04dee3
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DateFormatSymbols;
@@ -49,10 +42,6 @@ import javax.swing.table.JTableHeader;
  */
 public class TableCalculationView extends javax.swing.JFrame {//^public .*     
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:src/Interfaces/TableCalculationView.java
->>>>>>> c62ac061b5bb030b3a1f0a225ae8cadbbb04dee3
     File ff;
 
     private int inheritanceValue = 0;
@@ -75,12 +64,6 @@ public class TableCalculationView extends javax.swing.JFrame {//^public .*
     String regex_findcode = "\\n|^\\s*$|(\\{|^([\\W]*\\})|^[\\W]*\\s*\\/\\/|^[\\W]*\\s*\\*\\/|^[\\W]*\\s*\\/\\*|^[\\W]*\\s*\\*|^[\\W]*\\s*try\\s*\\{*|^[\\W]*\\s*\\}*\\s*(else)\\s*\\{*)|^public\\s*\\:|^private\\s*\\:";
     String regex_findcode2 = "(^([\\W]*\\}\\s*[\\w]+^(?!else))|\\w+^(?!try)\\{\\s*\\w*|\\w*\\{\\s*\\w+|\\w*\\{\\s*\\W+\\w+|\\w+\\W+\\{\\s*)";
 
-<<<<<<< HEAD
-=======
-=======
-   
->>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c:src/Interfaces/Calculation.java
->>>>>>> c62ac061b5bb030b3a1f0a225ae8cadbbb04dee3
     /**
      * Creates new form Calculation
      */
@@ -91,18 +74,8 @@ public class TableCalculationView extends javax.swing.JFrame {//^public .*
         jTableDesign();
         showTime();
     }
-<<<<<<< HEAD
 
     public TableCalculationView(File ff) throws IOException {
-=======
-<<<<<<< HEAD:src/Interfaces/TableCalculationView.java
-
-    public TableCalculationView(File ff) throws IOException {
-=======
-    
-    public Calculation(File ff) throws IOException {
->>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c:src/Interfaces/Calculation.java
->>>>>>> c62ac061b5bb030b3a1f0a225ae8cadbbb04dee3
         initComponents();
         this.ff = ff;
 
@@ -110,20 +83,9 @@ public class TableCalculationView extends javax.swing.JFrame {//^public .*
         this.setLocationRelativeTo(null);
         jTableDesign();
         showTime();
-<<<<<<< HEAD
 
         setTableData(ff);
         lineArray();
-=======
-<<<<<<< HEAD:src/Interfaces/TableCalculationView.java
-
-        setTableData(ff);
-        lineArray();
-=======
-        //regexChecker(".*[{};]", code);
-        setTableData(ff);
->>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c:src/Interfaces/Calculation.java
->>>>>>> c62ac061b5bb030b3a1f0a225ae8cadbbb04dee3
     }
 
     public int getInheritanceSum() {
@@ -181,10 +143,6 @@ public class TableCalculationView extends javax.swing.JFrame {//^public .*
         jTextField6.setEditable(false);
 
     }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:src/Interfaces/TableCalculationView.java
->>>>>>> c62ac061b5bb030b3a1f0a225ae8cadbbb04dee3
 
     public int setTableData(File ff) throws IOException {
         DefaultTableModel model = (DefaultTableModel) table_uploaded.getModel();
@@ -204,32 +162,6 @@ public class TableCalculationView extends javax.swing.JFrame {//^public .*
             Object[] row = {rowNumTable++, strCurrentLine, null, null, null, null, null, null, null, null};
 
             model.addRow(row);
-<<<<<<< HEAD
-=======
-=======
-    
-    //public void regexChecker(String theRegex, String code){
-    public void setTableData(File ff) throws IOException{  
-        FileReader fr = new FileReader(ff);    
-        BufferedReader br=new BufferedReader(fr);
-        
-        CodeLineCalculations cal = new CodeLineCalculations(ff);
-        //cal.checkExtends();
-        
-        String strCurrentLine;
-
-        while ((strCurrentLine = br.readLine()) != null) {
-        
-            Object[] row = { 1, strCurrentLine };
-            
-            DefaultTableModel model = (DefaultTableModel) table_uploaded.getModel();
-
-            model.addRow(row);
-        
-        }         
-    }
->>>>>>> c46fdcccffb5cabbd4fae6d27126b41fe0c8967c:src/Interfaces/Calculation.java
->>>>>>> c62ac061b5bb030b3a1f0a225ae8cadbbb04dee3
 
             //set complexity of inheritance row by row
             inheritanceClaculation(strCurrentLine, cal, set, iterator, model);
@@ -434,10 +366,6 @@ public class TableCalculationView extends javax.swing.JFrame {//^public .*
         jTextField4 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-<<<<<<< HEAD
-=======
-        jLabel7 = new javax.swing.JLabel();
->>>>>>> c62ac061b5bb030b3a1f0a225ae8cadbbb04dee3
         jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
@@ -583,14 +511,6 @@ public class TableCalculationView extends javax.swing.JFrame {//^public .*
         getContentPane().add(jTextField5);
         jTextField5.setBounds(990, 10, 80, 30);
 
-<<<<<<< HEAD
-=======
-        jLabel7.setBackground(new java.awt.Color(0, 0, 102));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/barT.png"))); // NOI18N
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(0, 0, 1490, 50);
-
->>>>>>> c62ac061b5bb030b3a1f0a225ae8cadbbb04dee3
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backGround2.png"))); // NOI18N
         getContentPane().add(jLabel6);
         jLabel6.setBounds(940, 270, 680, 520);
@@ -685,10 +605,6 @@ public class TableCalculationView extends javax.swing.JFrame {//^public .*
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-<<<<<<< HEAD
-=======
-    private javax.swing.JLabel jLabel7;
->>>>>>> c62ac061b5bb030b3a1f0a225ae8cadbbb04dee3
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
