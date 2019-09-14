@@ -5,17 +5,30 @@
  */
 package Interfaces;
 
-import Controllers.CodeLineCalculations;
+import Calculations.ControlStructureComplexity;
+import Calculations.InheritanceComplexity;
+import Calculations.NestedComplexity;
+import Calculations.SizeComplexity;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JFrame;
@@ -27,45 +40,78 @@ import javax.swing.table.JTableHeader;
  *
  * @author chami
  */
-public class Calculation extends javax.swing.JFrame {//^public .*
+public class TableCalculationView extends javax.swing.JFrame {//^public .*
 
-    CodeLineCalculations calculation = new CodeLineCalculations();
-    
+    File ff;
+
+    private int inheritanceValue = 0;
+    private int rowNum = 0;
+    private int rowNumTable = 1;
+
+    //complexity initializers
+    private int sumInheritance = 0;
+    private int sumSize = 0;
+    private int sumNested = 0;
+    private int sumControl = 0;
+
+    //regex
+    String regex_findClasses = "\\b(class)\\b\\s\\w+";
+    String regex_findcode = "\\n|^\\s*$|(\\{|^([\\W]*\\})|^[\\W]*\\s*\\/\\/|^[\\W]*\\s*\\*\\/|^[\\W]*\\s*\\/\\*|^[\\W]*\\s*\\*|^[\\W]*\\s*try\\s*\\{*|^[\\W]*\\s*\\}*\\s*(else)\\s*\\{*)";
+    String regex_findcode2 = "(^([\\W]*\\}\\s*[\\w]+^(?!else))|\\w+^(?!try)\\{\\s*\\w*|\\w*\\{\\s*\\w+|\\w*\\{\\s*\\W+\\w+|\\w+\\W+\\{\\s*)";
+
     /**
      * Creates new form Calculation
      */
-    public Calculation() {
+    public TableCalculationView() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
         jTableDesign();
         showTime();
     }
-    
-    public Calculation(String code) {
+
+    public TableCalculationView(File ff) throws IOException {
         initComponents();
+        this.ff = ff;
+
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
         jTableDesign();
         showTime();
-        //regexChecker(".*[{};]", code); 
-        setTableData(".*[{};]", code);
-        calculation(code);
+
+        setTableData(ff);
+        lineArray();
     }
-    
-     private void jTableDesign(){
+
+    public int getInheritanceSum() {
+        return sumInheritance;
+    }
+
+    public int getSumSize() {
+        return sumSize;
+    }
+
+    public int getSumNested() {
+        return sumNested;
+    }
+
+    public int getSumControl() {
+        return sumControl;
+    }
+
+    private void jTableDesign() {
         table_uploaded.setRowHeight(40);
         table_uploaded.setShowGrid(true);
-        table_uploaded.setGridColor(new Color(153,153,255));
+        table_uploaded.setGridColor(new Color(153, 153, 255));
         table_uploaded.setSelectionBackground(Color.DARK_GRAY);
-        
+
         JTableHeader tableHeader = table_uploaded.getTableHeader();
-        tableHeader.setBackground(new Color(153,153,255));
+        tableHeader.setBackground(new Color(153, 153, 255));
         tableHeader.setForeground(Color.BLACK);
         tableHeader.setPreferredSize(new Dimension(70, 70));
         tableHeader.setFont(new Font("Arial", Font.BOLD, 12));
     }
-     
+
     private void showTime() {
         Timer timer = new Timer(1000, new ActionListener() {
             @Override
@@ -85,33 +131,136 @@ public class Calculation extends javax.swing.JFrame {//^public .*
         timer.setCoalesce(true);
         timer.setInitialDelay(0);
         timer.start();
-        
+
         jTextField3.setEditable(false);
         jTextField4.setEditable(false);
         jTextField5.setEditable(false);
         jTextField6.setEditable(false);
 
     }
-    
-    //public void regexChecker(String theRegex, String code){
-    public void setTableData(String theRegex, String code){
-        ArrayList<String> list = calculation.breakLines(theRegex, code);
-        calculation.checkExtends();
-        
-        for (String temp : list) {
-            Object[] row = { 1, temp, };
-            
-            DefaultTableModel model = (DefaultTableModel) table_uploaded.getModel();
+
+    public int setTableData(File ff) throws IOException {
+        DefaultTableModel model = (DefaultTableModel) table_uploaded.getModel();
+
+        FileReader fr = new FileReader(ff);
+        BufferedReader br = new BufferedReader(fr);
+
+        String strCurrentLine;
+
+        InheritanceComplexity cal = new InheritanceComplexity(ff);
+        HashMap inheritance = cal.getClasses();
+        Set set = inheritance.entrySet();//Converting to Set so that we can traverse  
+        Iterator iterator = set.iterator();
+
+        while ((strCurrentLine = br.readLine()) != null) {
+
+            Object[] row = {rowNumTable++, strCurrentLine, null, null, null, null, null, null, null, null};
 
             model.addRow(row);
-        }         
+
+            inheritanceClaculation(strCurrentLine, cal, set, iterator, model);
+        }
+
+        for (int i = 0; i < table_uploaded.getRowCount(); i++) {
+            try {
+                this.sumInheritance = this.sumInheritance + Integer.parseInt(table_uploaded.getValueAt(i, 6).toString());
+            } catch (Exception e) {
+                //System.out.println("Error - " +e);
+            }
+
+        }
+
+        Object[] row = {null, "Total", null, null, null, null, sumInheritance, null, null, null};
+        model.addRow(row);
+
+        return this.sumInheritance;
     }
 
-    private void calculation(String regex){
-        //regexChecker("\\w*\\sextends\\s\\w*", code);
-        
+    private void lineArray() throws FileNotFoundException {
+        Scanner file = new Scanner(ff);// Path to the scanning file
+        ArrayList<String> lineArray = new ArrayList<String>();
+
+        while (file.hasNextLine()) {
+            lineArray.add(file.nextLine());
+        }
+
+        file.close();
+
+        String[] stringArray = lineArray.toArray(new String[lineArray.size()]);
+
+        sizeComplexity(stringArray);
+        controlComplexity(stringArray);
+        nestedLevelComplexity(lineArray);
+
     }
-    
+
+    private void sizeComplexity(String[] stringArray) throws FileNotFoundException {
+
+        SizeComplexity comp = new SizeComplexity();
+        this.sumSize = comp.sizeCalculate(stringArray);
+
+        System.out.println("================ Size Complexity =================\n");
+        System.out.println("Size complexity of the file : " + this.sumSize + "\n");
+        System.out.println("==================================================\n");
+
+    }
+
+    private void controlComplexity(String[] stringArray) throws FileNotFoundException {
+
+        ControlStructureComplexity comp = new ControlStructureComplexity();
+        this.sumControl = comp.controlStructureCalculate(stringArray);
+
+        System.out.println("================ Control Structure Complexity =================\n");
+        System.out.println("Control Structure complexity of the file : " + this.sumControl + "\n");
+        System.out.println("==================================================\n");
+
+    }
+
+    private void nestedLevelComplexity(ArrayList<String> lineArray) throws FileNotFoundException {
+
+        NestedComplexity ns = new NestedComplexity(lineArray);
+        this.sumNested = ns.calTotalNested();
+
+        System.out.println("================ Nested Level Complexity =================\n");
+        System.out.println("Nested Level complexity of the file : " + this.sumNested + "\n");
+        System.out.println("==================================================\n");
+
+    }
+
+    private void inheritanceClaculation(String strCurrentLine, InheritanceComplexity cal, Set set, Iterator iterator, DefaultTableModel model) {
+
+        boolean check = cal.checkLines(regex_findClasses, strCurrentLine);
+
+        if (check == true) {
+            String codeClass = cal.extractClass(regex_findClasses, strCurrentLine);
+            iterator = set.iterator();
+            while (iterator.hasNext()) {
+                //Converting to Map.Entry so that we can get key and value separately  
+                Map.Entry entry = (Map.Entry) iterator.next();
+                if (codeClass.equals(entry.getKey())) {
+                    inheritanceValue = (int) entry.getValue();
+                }
+            }
+        } else {
+            //check - {, /n, //, /*, *, */, try{ and try, 
+            boolean check2 = cal.checkLines(regex_findcode, strCurrentLine);
+
+            if (check2 == false) {
+                if (!strCurrentLine.trim().isEmpty()) {
+                    model.setValueAt(inheritanceValue, rowNum, 6);
+                }
+            } else {
+                boolean check3 = cal.checkLines(regex_findcode2, strCurrentLine);
+
+                if (check3 == true) {
+                    model.setValueAt(inheritanceValue, rowNum, 6);
+                }
+            }
+        }
+        rowNum++;
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -214,7 +363,7 @@ public class Calculation extends javax.swing.JFrame {//^public .*
         }
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(30, 130, 1310, 560);
+        jScrollPane2.setBounds(10, 130, 1350, 560);
 
         jLabel8.setBackground(new java.awt.Color(0, 51, 51));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -354,20 +503,21 @@ public class Calculation extends javax.swing.JFrame {//^public .*
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Calculation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TableCalculationView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Calculation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TableCalculationView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Calculation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TableCalculationView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Calculation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TableCalculationView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Calculation().setVisible(true);
+                new TableCalculationView().setVisible(true);
             }
         });
     }

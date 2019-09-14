@@ -87,7 +87,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="30" y="130" width="1310" height="560"/>
+          <AbsoluteConstraints x="10" y="130" width="1350" height="560"/>
         </Constraint>
       </Constraints>
 
@@ -135,7 +135,7 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="500" minWidth="500" prefWidth="500" resizable="true">
+                <Column maxWidth="500" minWidth="300" prefWidth="300" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -326,21 +326,6 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="990" y="10" width="80" height="30"/>
-        </Constraint>
-      </Constraints>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="66" green="0" red="0" type="rgb"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Images/barT.png"/>
-        </Property>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="0" width="1490" height="50"/>
         </Constraint>
       </Constraints>
     </Component>

@@ -6,70 +6,182 @@
 package Controllers;
 
 import Interfaces.Calculation;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author chami
+ * @author chami //([^{]*?)(?=\}) class\s\w*\s\{ new - class\s\w*\s\{((.|\n)*)\}
+ * // \((?>[^()]|(?R))*\)
  */
 public class CodeLineCalculations {
-    
+
+    BufferedReader br;
+    FileReader fr;
     String code;
+    File ff;
+    String sCode[];
     ArrayList<String> codeLines = new ArrayList<String>();
-    ArrayList<String> classExtended = new ArrayList<String>();
-    
-    public ArrayList<String> breakLines(String theRegex,String code){
-        this.code = code;
+    Map<String, String> classExtended = new HashMap<String, String>();
+    Map<String, Integer> classes = new HashMap<String, Integer>();
+
+    public CodeLineCalculations(File ff) throws FileNotFoundException, IOException {
+        this.ff = ff;
+        fr = new FileReader(ff);
+        br = new BufferedReader(fr);
+        convertFiletoString();
+        splitClasses();
+        findClasses();
+        checkExtends();
+        calculateComplexityInheritance();
+    }
+
+    //break the code by regex to get class names and extended classes
+    public void codeBreak(String theRegex, String line) {
         Pattern checkRegex = Pattern.compile(theRegex);
         Matcher regexMatcher = checkRegex.matcher(code);
-        
-        if(".*[{};]".equals(theRegex)){
-            while(regexMatcher.find()){ 
-                if(regexMatcher.group().length() != 0){ 
-                    codeLines.add(regexMatcher.group().trim());
-                }           
-    //            System.out.println("Start index : " +regexMatcher.start());
-    //            System.out.println("End index : " +regexMatcher.end());
+
+        //get extended classes and insert in to classExtended hash map
+        if ("class\\s+\\w+\\s+extends\\s+\\w+".equals(theRegex)) {
+            String s[];
+            while (regexMatcher.find()) {
+                if (regexMatcher.group().length() != 0) {
+                    s = regexMatcher.group().trim().split(" ");
+                   
+                    try{
+                        classExtended.put(s[1], s[3]);
+                    }catch(Exception e){
+                        System.out.println("error - " + e);
+                    }
+                }
             }
-            return codeLines;
-        }else if("\\w*\\sextends\\s\\w*".equals(theRegex)){
-            while(regexMatcher.find()){ 
-                if(regexMatcher.group().length() != 0){ 
-                    classExtended.add(regexMatcher.group().trim());
-                }           
+            
+        //insert class names and default value to the classes hash map    
+        } else if ("\\b(class)\\b\\s\\w+(\\s*|\\s+(extends)\\s+\\w.+\\s*)".equals(theRegex)) {
+            String s[];
+            while (regexMatcher.find()) {
+                if (regexMatcher.group().length() != 0) {
+                    s = regexMatcher.group().trim().split(" ");
+                    classes.put(s[1], 2);
+                }
             }
-            return classExtended;
+        } else {
+            while (regexMatcher.find()) {
+                if (regexMatcher.group().length() != 0) {
+                    System.out.println(regexMatcher.group().trim());
+                }
+            }
         }
-        return null;
     }
-    
-    public void checkExtends(){
-        int i = 0;
-        breakLines("\\w*\\sextends\\s\\w*", code);
-        
-        Map<String,String> classes = new HashMap<String,String>();  
-        
-        for (String temp : classExtended) {
-            String[] splitArray = temp.split(" extends ", 3);
-            System.out.println(splitArray[0]);
-            System.out.println(splitArray[1]);
-            
-            classes.put(splitArray[0], splitArray[1]);
-            
+
+    private void calculateComplexityInheritance() {
+        boolean loop;
+
+        for (Map.Entry c : classes.entrySet()) {
+
+            for (Map.Entry c2 : classExtended.entrySet()) {
+
+                loop = true;
+
+                if (c.getKey().equals(c2.getKey())) {  //check whether the class is inside the extended classes
+                    int count = (int) c.getValue() + 1;
+                    c.setValue(count);
+
+                    String className = (String) c2.getValue();
+
+                    for (Map.Entry c5 : classes.entrySet()) { // check for extended class has more parents
+                        if (!classExtended.containsKey(c5.getKey())) {
+                            if (className.equals(c5.getKey())) {
+                                loop = false;
+                            }
+                        }
+                    }
+                    
+                    for (Map.Entry c6 : classExtended.entrySet()) { // check if the class extended from other than the user defined classes 
+                        System.out.println(!classes.containsKey(c6.getValue()));
+                        System.out.println(c6.getValue());
+                       
+                        if (!classes.containsKey(c6.getValue())) {
+                          
+                            if (className.equals(c6.getValue()))  
+                                loop = false;
+                            
+                        }
+                    }
+
+                    // check for all the hierarchical levels
+                    while (loop == true) {
+                        for (Map.Entry c3 : classExtended.entrySet()) {
+
+                            if (className.equals(c3.getKey())) {
+                                count = (int) c.getValue() + 1;
+                                c.setValue(count);
+
+                                className = (String) c3.getValue();
+
+                                for (Map.Entry c4 : classes.entrySet()) {
+
+                                    if (!classExtended.containsKey(c4.getKey())) {
+                                        if (className.equals(c4.getKey())) 
+                                            loop = false;
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-        
-        for(Map.Entry c : classes.entrySet()){  
-//            System.out.println(c.getKey()+" "+c.getValue());  
-            
-        }  
-        
+
+        Set set = classes.entrySet();//Converting to Set so that we can traverse  
+        Iterator iterator = set.iterator();
+
+        while (iterator.hasNext()) {
+            //Converting to Map.Entry so that we can get key and value separately  
+            Map.Entry entry = (Map.Entry) iterator.next();
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+
     }
-    
-    public void findClasses(){}
-    
+
+    //pass extend classes regex code
+    public void checkExtends() throws IOException {
+        codeBreak("class\\s+\\w+\\s+extends\\s+\\w+", null);
+    }
+
+    //pass classes regex code to break
+    private void findClasses() {
+        codeBreak("\\b(class)\\b\\s\\w+(\\s*|\\s+(extends)\\s+\\w.+\\s*)", null);
+    }
+
+    //convert file to string
+    private void convertFiletoString() throws IOException {
+        String line = br.readLine();
+        StringBuilder sb = new StringBuilder();
+
+        while (line != null) {
+            sb.append(line).append("\n");
+            line = br.readLine();
+        }
+
+        code = sb.toString();
+    }
+
+    // split the classes with implementation
+    private void splitClasses() {
+        sCode = code.split("class ");
+    }
+
 }
